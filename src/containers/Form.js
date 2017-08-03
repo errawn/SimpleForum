@@ -11,68 +11,80 @@ import {
 import { fetchUser, getEmail, getPassword } from '../actions/user_action';
 
 class Form extends Component {
+
+	constructor(props) {
+		super(props);
+		this.getEmailText = this.getEmailText.bind(this);
+		this.getPasswordText = this.getPasswordText.bind(this);
+	}
 	
 	onLogin (email, password) {
-		this.props.fetchUser(email, password);
+		const { fetchUser } = this.props;
+		fetchUser(email, password);
 	}
 
 	getEmailText(e) {
-		this.props.getEmail(e.target.value);
+		const { getEmail } = this.props;
+		getEmail(e.target.value);
 	}
 
 	getPasswordText(e) {
-		this.props.getPassword(e.target.value);
+		const { getPassword } = this.props;
+		getPassword(e.target.value);
 	}
 
 	onClearInput() {
-		this.props.getEmail('');
-		this.props.getPassword('');
+		const { getPassword, getEmail } = this.props;
+		getEmail('');
+		getPassword('');
 	}
 	
 	redirectToHome() {
-		if (this.props.user.email != null ) {
-			console.log(this.props.user);
+		const { user } = this.props;
+
+		if (user.email != null ) {
+			console.log(user);
 			return <Redirect to='/navbar'/>
 		}
 	}
 
 	render () {
+		const { email, password } = this.props;
 		return (
 		<div className="">
-
 			<div className="field column is-8 is-offset-2">
 			  <label className="label">Email</label>
 			  <div className="control">
-			    <input className="input" type="email" value={this.props.email} onChange={this.getEmailText.bind(this)} />
+			    <input className="input" type="email" value={email} onChange={this.getEmailText} />
 			  </div>
 			  <br />
 
 			  <label className="label">Password</label>
 			  <div className="control">
-			    <input className="input" type="password" value={this.props.password} onChange={this.getPasswordText.bind(this)}/>
+			    <input className="input" type="password" value={password} onChange={this.getPasswordText}/>
 			  </div>
 			</div>
-			
-			{this.redirectToHome()}
 
 			<div className="field column is-8 is-offset-2 is-grouped">
 			  <div className="control">
-			    <button type="submit" className="button is-primary" onClick={() => this.onLogin(this.props.email, this.props.password)}>Login</button>
+			    <button type="submit" className="button is-primary" onClick={() => this.onLogin(email, password)}>Login</button>
 			  </div>
 			  <div className="control">
 			    <button className="button is-link" onClick={() => this.onClearInput()}>Clear</button>
 			  </div>
 			</div>
+
+			{ this.redirectToHome() }
 		</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user }) => {
 	return {
-		email: state.user.email,
-		password: state.user.password,
-		user: state.user.user
+		email: user.email,
+		password: user.password,
+		user: user.user
 	};
 };
 
