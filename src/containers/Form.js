@@ -53,6 +53,7 @@ class Form extends Component {
 		return (
 		<div className="">
 			<div className="field column is-8 is-offset-2">
+			  <h1>Please login to continue</h1>
 			  <label className="label">Email</label>
 			  <div className="control">
 			    <input className="input" type="email" value={email} onChange={this.getEmailText} />
