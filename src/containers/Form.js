@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
-import { fetchUser, getEmail, getPassword } from '../actions/user_action';
+import { fetchUser, getEmail, getPassword } from '../actions';
 
 class Form extends Component {
 
@@ -39,12 +33,12 @@ class Form extends Component {
 		getPassword('');
 	}
 	
-	redirectToHome() {
+	redirectToArticles() {
 		const { user } = this.props;
 
 		if (user.email != null ) {
 			console.log(user);
-			return <Redirect to='/navbar'/>
+			return <Redirect to='/articles'/>
 		}
 	}
 
@@ -68,14 +62,16 @@ class Form extends Component {
 
 			<div className="field column is-8 is-offset-2 is-grouped">
 			  <div className="control">
-			    <button type="submit" className="button is-primary" onClick={() => this.onLogin(email, password)}>Login</button>
+			    <button type="submit" className="button is-primary" onClick={() => this.onLogin(email, password)}>
+			    { this.props.loading ? 'Loading..' : 'Login' }
+			    </button>
 			  </div>
 			  <div className="control">
 			    <button className="button is-link" onClick={() => this.onClearInput()}>Clear</button>
 			  </div>
 			</div>
 
-			{ this.redirectToHome() }
+			{ this.redirectToArticles() }
 		</div>
 		);
 	}
@@ -85,7 +81,8 @@ const mapStateToProps = ({ user }) => {
 	return {
 		email: user.email,
 		password: user.password,
-		user: user.user
+		user: user.user,
+		loading: user.loading
 	};
 };
 

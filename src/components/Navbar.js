@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import {
+  Link
+} from 'react-router-dom';
 
 export default class Navbar extends Component {
 	render () {
 		return (
 			<nav className="navbar ">
 			  <div className="navbar-brand">
-			    <a className="navbar-item" href="http://bulma.io">
-			      SimpleForum
-			    </a>
+          <Link to="/" className="navbar-item">
+            SimpleForum
+          </Link>
 
 			    <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma">
 			      <span className="icon" style={{color: '#333'}}>
@@ -30,9 +33,9 @@ export default class Navbar extends Component {
 
 			  <div id="navMenuExample" className="navbar-menu">
     <div className="navbar-end">
-      <a className="navbar-item is-hidden-desktop-only" href="https://github.com/jgthms/bulma" >
+      <Link to="/Home" className="navbar-item is-hidden-desktop-only">
         Home
-      </a>
+      </Link>
       <a className="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" >
         Profile
       </a>
