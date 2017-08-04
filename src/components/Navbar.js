@@ -33,7 +33,7 @@ export default class Navbar extends Component {
 
 			  <div id="navMenuExample" className="navbar-menu">
     <div className="navbar-end">
-      <Link to="/Home" className="navbar-item is-hidden-desktop-only">
+      <Link to="/articles" className="navbar-item is-hidden-desktop-only">
         Home
       </Link>
       <a className="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" >
