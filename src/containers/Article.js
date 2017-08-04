@@ -17,6 +17,7 @@ class Article extends Component {
 		const ArticleCard = (
 			<div>
 			<Navbar />
+			token: { this.props.token }
 			<div className="card column is-8 is-offset-2">
 			  <header className="card-header">
 			    <p className="card-header-title">
@@ -62,10 +63,11 @@ class Article extends Component {
 	}
 }
 
-const mapStateToProps = ({ user_posts }) => {
+const mapStateToProps = ({ user_posts, user }) => {
 	return {
 		posts: user_posts.posts,
-		loading: user_posts.loading
+		loading: user_posts.loading,
+		token: user.token
 	};
 };
 

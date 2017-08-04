@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 	user: [],
 	loggedIn: false,
 	loading: false,
+	token: '',
 	error: []
 };
 
@@ -27,7 +28,13 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, loading: true, loggedIn: false }
 
 		case FETCH_USER_SUCCESS: 
-			return { ...state, loggedIn: true, loading: false, user: action.payload, error: '' }
+			return { ...state,
+			 loggedIn: true,
+			 loading: false, 
+			 user: action.payload, 
+			 error: '', 
+			 token: action.payload.token 
+			}
 
 		case FETCH_USER_FAIL:
 			return { ...state, loggedIn: false, loading: false, error: action.payload }
