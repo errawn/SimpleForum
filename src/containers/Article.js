@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import { fetchPosts } from '../actions';
 
+import Navbar from '../components/Navbar';
+
 
 class Article extends Component {
 
@@ -13,6 +15,8 @@ class Article extends Component {
 
 	renderArticles() {
 		const ArticleCard = (
+			<div>
+			<Navbar />
 			<div className="card column is-8 is-offset-2">
 			  <header className="card-header">
 			    <p className="card-header-title">
@@ -37,6 +41,7 @@ class Article extends Component {
 			    <a className="card-footer-item">Edit</a>
 			    <a className="card-footer-item">Delete</a>
 			  </footer>
+			</div>
 			</div>
 		);
 
